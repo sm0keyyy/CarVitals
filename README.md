@@ -1,6 +1,6 @@
 # CarVitals
 
-Self-hosted car telemetry dashboard. Personal project — one vehicle, one user, and a pile of OBD CSVs that wanted somewhere to live.
+Self-hosted car telemetry dashboard. Started as a single-user, single-vehicle tool to give a pile of OBD CSVs somewhere to live — headed toward multi-user, multi-vehicle as the foundations solidify.
 
 ## What it does
 
@@ -65,9 +65,17 @@ Once up:
 
 ## Status
 
-This is a personal project. It works for my car, on my hardware, with my habits. It is not a product, there is no roadmap for other people, and issues/PRs asking for features outside that scope will probably stay open forever.
+Actively developed. Currently scoped to one vehicle and one user (me) while the core is shaking out — per-sample degradation, map-matching, fuel pipeline, and the dashboard shell are the pieces being stabilized first.
 
-You're welcome to read the code, lift pieces of it, or run your own copy. Both are fine. Just don't expect support.
+On the roadmap:
+
+- **Multi-user + auth** — Google SSO, admin invites, per-user settings. The API already separates read vs. write; this is mostly wiring the session layer.
+- **Multi-vehicle** — `vehicle_id` FK through the schema, VIN-based folder discovery on the Dropbox side.
+- **Real-measurement calibration** — oil UOA, coolant strips, brake moisture, tread depth, and battery CCA become the ground truth; OBD severity collapses to an interpolation weight.
+- **Bidirectional dashboard** — WebSocket write path so fillups / services / file uploads happen in the UI instead of requiring an iOS Shortcut round-trip.
+- **Layout picker** — three dashboard layouts (dashboard strip, canvas + inspector, instrument cluster) are already wired; a settings toggle is the last piece.
+
+Issues and PRs are welcome, though response time will depend on whether I'm deep in a refactor when they land. If something you want doesn't fit where the project is heading, I'll tell you rather than leave it open forever.
 
 ## License
 
